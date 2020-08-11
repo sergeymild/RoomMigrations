@@ -1,10 +1,10 @@
 package room.persistence.arch.android.migration
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.RoomDatabase
-import android.support.v7.app.AppCompatActivity
+import android.app.Activity
 import android.os.Bundle
+import androidx.room.Database
+import androidx.room.Entity
+import androidx.room.RoomDatabase
 
 
 @Database(entities = [
@@ -18,10 +18,10 @@ class Post(
         var url: String
 )
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
     }
 }

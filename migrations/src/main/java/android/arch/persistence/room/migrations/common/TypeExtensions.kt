@@ -1,7 +1,8 @@
 package android.arch.persistence.room.migrations.common
 
-import android.arch.persistence.room.Ignore
+
 import android.arch.persistence.room.migrations.ProcessorException
+import androidx.room.Ignore
 import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.ParameterizedTypeName
 import com.squareup.javapoet.TypeName
@@ -51,7 +52,7 @@ fun Element.name(): String {
 
 fun Element.isNonNull(): Boolean {
     for (annotation in annotationMirrors) {
-        if (annotation.asElement().asType().toString() == "android.support.annotation.NonNull")
+        if (annotation.asElement().asType().toString() == "androidx.annotation.NonNull")
             return true
         if (annotation.asElement().asType().toString() == "org.jetbrains.annotations.NotNull")
             return true

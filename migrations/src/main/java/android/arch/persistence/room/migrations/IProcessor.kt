@@ -1,7 +1,8 @@
 package android.arch.persistence.room.migrations
 
-import android.arch.persistence.room.Database
+
 import android.arch.persistence.room.migrations.models.RoomModel
+import androidx.room.Database
 import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.TypeSpec
 import java.io.IOException
@@ -14,7 +15,7 @@ import javax.lang.model.type.MirroredTypesException
 import javax.lang.model.type.TypeMirror
 import javax.tools.Diagnostic
 
-@SupportedAnnotationTypes("android.arch.persistence.room.Entity")
+@SupportedAnnotationTypes("androidx.room.Entity")
 open class IProcessor : AbstractProcessor() {
 
     override fun process(annotations: Set<TypeElement>, roundEnv: RoundEnvironment): Boolean {

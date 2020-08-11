@@ -9,7 +9,7 @@ import android.arch.persistence.room.migrations.models.RoomIndex
 import android.arch.persistence.room.migrations.models.RoomModel
 import javax.lang.model.element.ExecutableElement
 import javax.lang.model.element.TypeElement
-import android.arch.persistence.room.*
+import androidx.room.*
 import javax.lang.model.element.VariableElement
 import javax.lang.model.type.MirroredTypesException
 import javax.lang.model.type.TypeMirror

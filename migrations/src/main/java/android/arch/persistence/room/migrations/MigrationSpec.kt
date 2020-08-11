@@ -12,10 +12,10 @@ import javax.lang.model.element.Modifier
  * Created by sergeygolishnikov on 10/01/2018.
  */
 
-private val roomMigrationType = ClassName.bestGuess("android.arch.persistence.room.migration.Migration")
-private val databaseType = ClassName.bestGuess("android.arch.persistence.db.SupportSQLiteDatabase")
+private val roomMigrationType = ClassName.bestGuess("androidx.room.migration.Migration")
+private val databaseType = ClassName.bestGuess("androidx.sqlite.db.SupportSQLiteDatabase")
 private val cursorType = ClassName.bestGuess("android.database.Cursor")
-val nonNullAnnotationType = ClassName.bestGuess("android.support.annotation.NonNull")
+val nonNullAnnotationType = ClassName.bestGuess("androidx.annotation.NonNull")
 
 fun databaseParameter(): ParameterSpec {
     return ParameterSpec
