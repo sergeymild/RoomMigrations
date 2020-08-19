@@ -10,6 +10,7 @@ import android.arch.persistence.room.migrations.models.RoomModel
 import javax.lang.model.element.ExecutableElement
 import javax.lang.model.element.TypeElement
 import androidx.room.*
+import javax.lang.model.element.Element
 import javax.lang.model.element.VariableElement
 import javax.lang.model.type.MirroredTypesException
 import javax.lang.model.type.TypeMirror
@@ -18,7 +19,10 @@ import javax.lang.model.util.ElementFilter
 /**
  * Created by sergeygolishnikov on 09/01/2018.
  */
-class RoomModelParser(val models: List<TypeMirror>) {
+class RoomModelParser(
+        private val models: List<TypeMirror>,
+        private val databaseElement: Element
+) {
 
     fun parse(): List<RoomModel> {
         val roomModels = mutableListOf<RoomModel>()
@@ -112,6 +116,7 @@ class RoomModelParser(val models: List<TypeMirror>) {
     private fun tryFindConverterType(field: VariableElement, roomModel: RoomModel): String {
         //return "TEXT"
         val annotation = roomModel.element.getAnnotation(TypeConverters::class.java)
+                ?: databaseElement.getAnnotation(TypeConverters::class.java)
                 ?: throw ProcessorException("Can't detect field type for ${field.asType()} in ${roomModel.element}").setElement(field)
 
         try {

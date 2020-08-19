@@ -1,11 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'kotlin'
-//apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'com.github.dcendents.android-maven' // ADD THIS
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group='android.arch.persistence.room.migrations'
 archivesBaseName = "migrations"
-version="2.0.0"
+version="2.0.1"
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
@@ -16,16 +16,16 @@ dependencies {
     implementation "com.squareup:javapoet:1.13.0"
 }
 
-//shadowJar {
-//    include 'com.squareup:javapoet:.*'
-////    dependencies {
-////        include(dependency('com.squareup:javapoet:.*'))
-////    }
-////    relocate 'com.squareup', 'com.ioc.squareup'
-//    baseName "${archivesBaseName}"
-//}
-//
-//jar.finalizedBy shadowJar
+shadowJar {
+    include 'com.squareup:javapoet:.*'
+//    dependencies {
+//        include(dependency('com.squareup:javapoet:.*'))
+//    }
+//    relocate 'com.squareup', 'com.ioc.squareup'
+    baseName "${archivesBaseName}"
+}
+
+jar.finalizedBy shadowJar
 
 project.buildDir = file("$buildDir/generated/source/kapt/main")
 

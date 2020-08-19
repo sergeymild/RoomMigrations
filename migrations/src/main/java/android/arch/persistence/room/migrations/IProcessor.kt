@@ -24,6 +24,7 @@ open class IProcessor : AbstractProcessor() {
         } catch (e: ProcessorException) {
             processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, e.message, e.element)
         } catch (e: Throwable) {
+            processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, e.message)
             throw RuntimeException(e)
         }
 
@@ -38,7 +39,7 @@ open class IProcessor : AbstractProcessor() {
         try {
             databaseAnnotation.entities
         } catch (e: MirroredTypesException) {
-            createRoomModels(e.typeMirrors, models)
+            createRoomModels(e.typeMirrors, models, database)
         }
 
 
@@ -48,8 +49,8 @@ open class IProcessor : AbstractProcessor() {
     }
 
 
-    private fun createRoomModels(models: List<TypeMirror>, roomModels: MutableList<RoomModel>) {
-        roomModels.addAll(RoomModelParser(models).parse())
+    private fun createRoomModels(models: List<TypeMirror>, roomModels: MutableList<RoomModel>, databaseElement: Element) {
+        roomModels.addAll(RoomModelParser(models, databaseElement).parse())
     }
 
     private fun createMigrations(roomModels: MutableList<RoomModel>) {
